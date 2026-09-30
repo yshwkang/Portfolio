@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>홍길동 | Frontend Developer</title>
+  <meta name="description" content="프론트엔드 개발자 포트폴리오 - 프로젝트, 기술 스택, 경력">
+  <meta name="color-scheme" content="light dark">
+  <script>
+    // 저장된 테마를 렌더링 전에 적용해 깜빡임을 방지
+    try {
+      var t = localStorage.getItem('theme');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <!-- file://로 열어도 동작하도록 ES 모듈 대신 defer 스크립트를 순서대로 로드 (defer는 선언 순서를 보장) -->
+  <script defer src="data/profile.js"></script>
+  <script defer src="data/skills.js"></script>
+  <script defer src="data/projects.js"></script>
+  <script defer src="data/experience.js"></script>
+  <script defer src="js/dom.js"></script>
+  <script defer src="js/theme.js"></script>
+  <script defer src="js/nav.js"></script>
+  <script defer src="js/render/hero.js"></script>
+  <script defer src="js/render/about.js"></script>
+  <script defer src="js/render/skills.js"></script>
+  <script defer src="js/render/projects.js"></script>
+  <script defer src="js/render/experience.js"></script>
+  <script defer src="js/render/contact.js"></script>
+  <script defer src="js/components/particles.js"></script>
+  <script defer src="js/main.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="#top" data-bind="name">홍길동</a>
+      <nav id="site-nav" class="site-nav" aria-label="주요 메뉴">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="site-header__actions">
+        <button id="theme-toggle" class="icon-btn" type="button" aria-label="다크/라이트 테마 전환">
+          <span aria-hidden="true">◐</span>
+        </button>
+        <button id="menu-toggle" class="icon-btn menu-toggle" type="button"
+                aria-expanded="false" aria-controls="site-nav" aria-label="메뉴 열기">
+          <span aria-hidden="true">☰</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero" aria-label="소개">
+      <canvas id="hero-canvas" class="hero__canvas" aria-hidden="true"></canvas>
+      <div class="container hero__content">
+        <p class="hero__kicker" data-bind="role">Frontend Developer</p>
+        <h1 class="hero__name" data-bind="name">홍길동</h1>
+        <p class="hero__tagline" data-bind="tagline">사용자 경험과 코드 품질을 함께 고민하는 프론트엔드 개발자</p>
+        <ul id="hero-keywords" class="chips" aria-label="핵심 기술"></ul>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#projects">프로젝트 보기</a>
+          <a class="btn" href="assets/resume.pdf" data-resume download>이력서 다운로드</a>
+          <a class="btn btn--ghost" href="#contact">연락하기</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__eyebrow">01 — About</p>
+          <h2 class="section__title">소개</h2>
+        </header>
+        <div id="about-content" class="section__body">
+          <noscript>이 페이지의 콘텐츠를 보려면 JavaScript가 필요합니다.</noscript>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__eyebrow">02 — Skills</p>
+          <h2 class="section__title">기술 스택</h2>
+        </header>
+        <div id="skills-content" class="section__body"></div>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__eyebrow">03 — Projects</p>
+          <h2 class="section__title">프로젝트</h2>
+        </header>
+        <div id="projects-content" class="section__body"></div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__eyebrow">04 — Experience</p>
+          <h2 class="section__title">경력 · 교육 · 자격</h2>
+        </header>
+        <div id="experience-content" class="section__body"></div>
+      </div>
+    </section>
+
+    <section id="contact" class="section section--contact">
+      <div class="container">
+        <header class="section__head">
+          <p class="section__eyebrow">05 — Contact</p>
+          <h2 class="section__title">함께 일하고 싶으시다면</h2>
+        </header>
+        <div id="contact-content" class="section__body"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="footer-year"></span> <span data-bind="name">홍길동</span>. Built with vanilla JavaScript.</small>
+    </div>
+  </footer>
+</body>
+</html>

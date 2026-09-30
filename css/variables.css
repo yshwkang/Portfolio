@@ -1,0 +1,46 @@
+/* 디자인 토큰: 색상·타이포·간격은 모두 여기서 관리 */
+:root {
+  --font-display: "Pretendard Variable", Pretendard, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-body: "Pretendard Variable", Pretendard, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", "SF Mono", Consolas, monospace;
+
+  --container: 1120px;
+  --gutter: clamp(1.25rem, 5vw, 2.5rem);
+  --header-h: 64px;
+  --radius: 16px;
+
+  /* Light */
+  --bg: #f6f5f1;
+  --bg-elev: #ffffff;
+  --text: #14141a;
+  --text-muted: #5a5a66;
+  --border: #dcdad2;
+  --accent: #4a2fe0;
+  --on-accent: #ffffff;
+  --particle: #14141a;
+}
+
+/* Dark: 시스템 설정을 따르되, 사용자가 명시적으로 light를 고르면 무시 */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d0d12;
+    --bg-elev: #16161d;
+    --text: #f2f1ec;
+    --text-muted: #a1a1ad;
+    --border: #2a2a33;
+    --accent: #c6ff3d;
+    --on-accent: #0d0d12;
+    --particle: #f2f1ec;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #0d0d12;
+  --bg-elev: #16161d;
+  --text: #f2f1ec;
+  --text-muted: #a1a1ad;
+  --border: #2a2a33;
+  --accent: #c6ff3d;
+  --on-accent: #0d0d12;
+  --particle: #f2f1ec;
+}
