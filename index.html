@@ -1,138 +1,507 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>홍길동 | Frontend Developer</title>
-  <meta name="description" content="프론트엔드 개발자 포트폴리오 - 프로젝트, 기술 스택, 경력">
-  <meta name="color-scheme" content="light dark">
-  <script>
-    // 저장된 테마를 렌더링 전에 적용해 깜빡임을 방지
-    try {
-      var t = localStorage.getItem('theme');
-      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
-    } catch (e) {}
-  </script>
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/base.css">
-  <link rel="stylesheet" href="css/components.css">
-  <!-- file://로 열어도 동작하도록 ES 모듈 대신 defer 스크립트를 순서대로 로드 (defer는 선언 순서를 보장) -->
-  <script defer src="data/profile.js"></script>
-  <script defer src="data/skills.js"></script>
-  <script defer src="data/projects.js"></script>
-  <script defer src="data/experience.js"></script>
-  <script defer src="js/dom.js"></script>
-  <script defer src="js/theme.js"></script>
-  <script defer src="js/nav.js"></script>
-  <script defer src="js/render/hero.js"></script>
-  <script defer src="js/render/about.js"></script>
-  <script defer src="js/render/skills.js"></script>
-  <script defer src="js/render/projects.js"></script>
-  <script defer src="js/render/experience.js"></script>
-  <script defer src="js/render/contact.js"></script>
-  <script defer src="js/components/particles.js"></script>
-  <script defer src="js/main.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>포트폴리오 | 서비스 기획자 홍길동</title>
+  <meta name="description" content="사용자의 문제를 구조로 푸는 서비스 기획자 홍길동의 포트폴리오입니다." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 
-  <header class="site-header">
-    <div class="container site-header__inner">
-      <a class="brand" href="#top" data-bind="name">홍길동</a>
-      <nav id="site-nav" class="site-nav" aria-label="주요 메뉴">
-        <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#skills">Skills</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-      <div class="site-header__actions">
-        <button id="theme-toggle" class="icon-btn" type="button" aria-label="다크/라이트 테마 전환">
-          <span aria-hidden="true">◐</span>
-        </button>
-        <button id="menu-toggle" class="icon-btn menu-toggle" type="button"
-                aria-expanded="false" aria-controls="site-nav" aria-label="메뉴 열기">
-          <span aria-hidden="true">☰</span>
-        </button>
-      </div>
-    </div>
+  <!-- ===== HEADER / NAV ===== -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#hero" class="nav__logo">GD.</a>
+      <ul class="nav__list">
+        <li><a href="#about"   class="nav__link">About</a></li>
+        <li><a href="#skills"  class="nav__link">Skills</a></li>
+        <li><a href="#projects" class="nav__link">Projects</a></li>
+        <li><a href="#experience" class="nav__link">Experience</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
+      </ul>
+      <button class="nav__toggle" id="navToggle" aria-label="메뉴 열기">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+    </nav>
   </header>
 
-  <main id="main">
-    <section id="top" class="hero" aria-label="소개">
-      <canvas id="hero-canvas" class="hero__canvas" aria-hidden="true"></canvas>
-      <div class="container hero__content">
-        <p class="hero__kicker" data-bind="role">Frontend Developer</p>
-        <h1 class="hero__name" data-bind="name">홍길동</h1>
-        <p class="hero__tagline" data-bind="tagline">사용자 경험과 코드 품질을 함께 고민하는 프론트엔드 개발자</p>
-        <ul id="hero-keywords" class="chips" aria-label="핵심 기술"></ul>
-        <div class="hero__cta">
-          <a class="btn btn--primary" href="#projects">프로젝트 보기</a>
-          <a class="btn" href="assets/resume.pdf" data-resume download>이력서 다운로드</a>
-          <a class="btn btn--ghost" href="#contact">연락하기</a>
+  <main>
+
+    <!-- ===== SECTION 01 : HERO ===== -->
+    <section class="hero" id="hero">
+      <div class="hero__bg-shapes">
+        <span class="shape shape--1"></span>
+        <span class="shape shape--2"></span>
+        <span class="shape shape--3"></span>
+      </div>
+      <div class="container hero__inner">
+        <p class="hero__greeting">안녕하세요 👋</p>
+        <h1 class="hero__name">저는 <span class="highlight">홍길동</span>입니다.</h1>
+        <div class="hero__role-wrapper">
+          <span class="hero__role-prefix">꿈꾸는 </span>
+          <span class="hero__role-text" id="typingText"></span>
+          <span class="hero__cursor">|</span>
+        </div>
+        <p class="hero__slogan">"사용자의 문제를 구조로 푸는 기획자"</p>
+        <div class="hero__cta-group">
+          <a href="#projects" class="btn btn--primary">프로젝트 보기</a>
+          <a href="#contact"  class="btn btn--outline">연락하기</a>
+        </div>
+      </div>
+      <a href="#about" class="hero__scroll-down" aria-label="아래로 스크롤">
+        <i class="fa-solid fa-chevron-down"></i>
+      </a>
+    </section>
+
+    <!-- ===== SECTION 02 : ABOUT ===== -->
+    <section class="about section" id="about">
+      <div class="container">
+        <h2 class="section__title reveal">About Me</h2>
+        <p class="section__subtitle reveal">저를 소개합니다</p>
+        <div class="about__grid">
+          <div class="about__image-wrap reveal">
+            <div class="about__image-placeholder">
+              <i class="fa-solid fa-user"></i>
+            </div>
+            <!-- 실제 사진 사용 시 아래 주석 해제 -->
+            <!-- <img src="assets/images/profile.jpg" alt="홍길동 프로필 사진" /> -->
+          </div>
+          <div class="about__content">
+            <p class="about__intro reveal">
+              <strong>"기획은 사용자와 비즈니스 사이의 번역입니다."</strong>
+            </p>
+            <p class="about__desc reveal">
+              사람들이 일상에서 겪는 불편함을 서비스로 해결하고 싶어 기획을 시작했습니다.
+              사용자 리서치를 통해 진짜 문제를 찾아내고, 데이터를 근거로 논리적인 의사결정을 내리는
+              기획자가 되는 것이 목표입니다. 개발·디자인 팀과의 원활한 협업을 위해
+              기술적 기초도 꾸준히 학습하고 있습니다.
+            </p>
+            <div class="about__tags reveal">
+              <span class="tag">#사용자중심</span>
+              <span class="tag">#데이터기반</span>
+              <span class="tag">#문제해결</span>
+              <span class="tag">#협업</span>
+              <span class="tag">#애자일</span>
+              <span class="tag">#커머스</span>
+              <span class="tag">#핀테크</span>
+            </div>
+            <div class="about__info reveal">
+              <div class="about__info-item">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>○○대학교 경영학과 (2025년 2월 졸업 예정)</span>
+              </div>
+              <div class="about__info-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>서울 거주 · 전국 가능</span>
+              </div>
+              <div class="about__info-item">
+                <i class="fa-solid fa-briefcase"></i>
+                <span>관심 직군: 서비스 기획자 · PM · PO</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="about" class="section">
+    <!-- ===== SECTION 03 : SKILLS ===== -->
+    <section class="skills section section--alt" id="skills">
       <div class="container">
-        <header class="section__head">
-          <p class="section__eyebrow">01 — About</p>
-          <h2 class="section__title">소개</h2>
-        </header>
-        <div id="about-content" class="section__body">
-          <noscript>이 페이지의 콘텐츠를 보려면 JavaScript가 필요합니다.</noscript>
+        <h2 class="section__title reveal">Skills</h2>
+        <p class="section__subtitle reveal">보유 역량</p>
+        <div class="skills__grid">
+
+          <div class="skill-card reveal">
+            <div class="skill-card__icon"><i class="fa-solid fa-pencil-ruler"></i></div>
+            <h3 class="skill-card__title">기획 역량</h3>
+            <ul class="skill-card__list">
+              <li>
+                <span class="skill-name">서비스 기획 / 화면 설계</span>
+                <div class="skill-bar"><div class="skill-bar__fill" data-width="85"></div></div>
+              </li>
+              <li>
+                <span class="skill-name">사용자 리서치 (인터뷰·설문)</span>
+                <div class="skill-bar"><div class="skill-bar__fill" data-width="80"></div></div>
+              </li>
+              <li>
+                <span class="skill-name">정보구조 설계 (IA)</span>
+                <div class="skill-bar"><div class="skill-bar__fill" data-width="75"></div></div>
+              </li>
+              <li>
+                <span class="skill-name">와이어프레임 / 프로토타입</span>
+                <div class="skill-bar"><div class="skill-bar__fill" data-width="80"></div></div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="skill-card reveal">
+            <div class="skill-card__icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <h3 class="skill-card__title">활용 툴</h3>
+            <ul class="skill-card__list">
+              <li>
+                <span class="skill-name">Figma</span>
+                <div class="skill-bar"><div class="skill-bar__fill" data-width="85"></div></div>
+              </li>
+              <li>
+                <span class="skill-name">Notion</span>
+                <div class="skill-bar"><div class="skill-bar__fill" data-width="90"></div></div>
+              </li>
+              <li>
+                <span class="skill-name">Google Analytics</span>
+                <div class="skill-bar"><div class="skill-bar__fill" data-width="65"></div></div>
+              </li>
+              <li>
+                <span class="skill-name">Miro</span>
+                <div class="skill-bar"><div class="skill-bar__fill" data-width="75"></div></div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="skill-card reveal">
+            <div class="skill-card__icon"><i class="fa-solid fa-people-group"></i></div>
+            <h3 class="skill-card__title">협업 역량</h3>
+            <ul class="skill-card__list">
+              <li>
+                <span class="skill-name">개발팀 커뮤니케이션</span>
+                <div class="skill-bar"><div class="skill-bar__fill" data-width="80"></div></div>
+              </li>
+              <li>
+                <span class="skill-name">디자이너 협업</span>
+                <div class="skill-bar"><div class="skill-bar__fill" data-width="85"></div></div>
+              </li>
+              <li>
+                <span class="skill-name">애자일 스크럼</span>
+                <div class="skill-bar"><div class="skill-bar__fill" data-width="70"></div></div>
+              </li>
+              <li>
+                <span class="skill-name">문서화 · 발표</span>
+                <div class="skill-bar"><div class="skill-bar__fill" data-width="88"></div></div>
+              </li>
+            </ul>
+          </div>
+
         </div>
       </div>
     </section>
 
-    <section id="skills" class="section">
+    <!-- ===== SECTION 04 : PROJECTS ===== -->
+    <section class="projects section" id="projects">
       <div class="container">
-        <header class="section__head">
-          <p class="section__eyebrow">02 — Skills</p>
-          <h2 class="section__title">기술 스택</h2>
-        </header>
-        <div id="skills-content" class="section__body"></div>
+        <h2 class="section__title reveal">Projects</h2>
+        <p class="section__subtitle reveal">프로젝트 포트폴리오</p>
+
+        <!-- 필터 탭 -->
+        <div class="projects__filter reveal">
+          <button class="filter-btn active" data-filter="all">전체</button>
+          <button class="filter-btn" data-filter="app">앱 기획</button>
+          <button class="filter-btn" data-filter="web">웹 기획</button>
+          <button class="filter-btn" data-filter="research">리서치</button>
+        </div>
+
+        <!-- 프로젝트 카드 -->
+        <div class="projects__grid" id="projectsGrid">
+
+          <article class="project-card reveal" data-category="app"
+            data-title="헬스케어 앱 기획"
+            data-period="2024.03 ~ 2024.06"
+            data-tags="#UX리서치 #앱기획 #헬스케어"
+            data-problem="MZ세대 직장인의 40%가 만성 스트레스를 경험하지만 실질적인 관리 서비스가 부족하다는 문제를 발견했습니다."
+            data-research="사용자 인터뷰 15명, 온라인 설문 87명, 경쟁사 앱 8개 분석을 진행했습니다."
+            data-insight="① 사용자는 복잡한 기능보다 '지금 당장의 해소'를 원함 ② 기록보다 즉각적 피드백 선호 ③ 사회적 비교 기능은 오히려 스트레스 유발"
+            data-feature="5분 마음 챙김 / 감정 체크인 / AI 맞춤 콘텐츠 추천 / 익명 커뮤니티"
+            data-result="Figma 프로토타입 완성, 사용성 테스트 5명 진행 후 2차 개선"
+            data-review="사용자 인터뷰를 통해 가설이 완전히 뒤집히는 경험을 했습니다. 초기 기획의 '기록 기능'이 오히려 부담이 된다는 인사이트를 얻어 방향을 전환했습니다.">
+            <div class="project-card__thumb project-card__thumb--1">
+              <span class="project-card__category">앱 기획</span>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">헬스케어 앱 기획</h3>
+              <p class="project-card__desc">MZ세대 직장인을 위한 스트레스 관리 앱 서비스 기획</p>
+              <div class="project-card__tags">
+                <span class="tag tag--sm">#UX리서치</span>
+                <span class="tag tag--sm">#앱기획</span>
+                <span class="tag tag--sm">#헬스케어</span>
+              </div>
+              <div class="project-card__footer">
+                <span class="project-card__period">2024.03 ~ 2024.06</span>
+                <button class="project-card__more">자세히 보기 <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-category="web"
+            data-title="중고 거래 플랫폼 리뉴얼 기획"
+            data-period="2024.07 ~ 2024.09"
+            data-tags="#경쟁사분석 #웹기획 #커머스"
+            data-problem="기존 중고 거래 플랫폼의 사기 거래 신고율이 높고, 신규 사용자의 첫 거래 완주율이 낮다는 문제를 정의했습니다."
+            data-research="설문 조사 120명, 실제 거래 로그 분석, 경쟁사(당근, 번개장터) UI 벤치마킹"
+            data-insight="① 첫 거래 이탈은 '신뢰 부족'이 주원인 ② 판매자 응답 속도가 구매 결정에 결정적 영향 ③ 카테고리 탐색보다 검색 진입이 70% 이상"
+            data-feature="판매자 신뢰 지수 / 실시간 채팅 응답률 표시 / 안전거래 유도 플로우 / 검색 UX 개선"
+            data-result="기획서 + 화면 설계서(40p) 완성, 팀 프로젝트 최우수 발표 선정"
+            data-review="데이터 분석을 통해 의사결정을 내리는 과정이 인상적이었습니다. 다음에는 실제 A/B 테스트 설계까지 포함하고 싶습니다.">
+            <div class="project-card__thumb project-card__thumb--2">
+              <span class="project-card__category">웹 기획</span>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">중고 거래 플랫폼 리뉴얼</h3>
+              <p class="project-card__desc">신뢰 기반 중고 거래 경험 개선을 위한 UX 리뉴얼 기획</p>
+              <div class="project-card__tags">
+                <span class="tag tag--sm">#경쟁사분석</span>
+                <span class="tag tag--sm">#웹기획</span>
+                <span class="tag tag--sm">#커머스</span>
+              </div>
+              <div class="project-card__footer">
+                <span class="project-card__period">2024.07 ~ 2024.09</span>
+                <button class="project-card__more">자세히 보기 <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-category="research"
+            data-title="대학생 독서 습관 리서치"
+            data-period="2023.09 ~ 2023.11"
+            data-tags="#사용자리서치 #설문 #인터뷰"
+            data-problem="독서율이 낮아지는 사회적 트렌드 속에서 대학생들이 독서를 기피하는 진짜 이유를 파악하고자 했습니다."
+            data-research="심층 인터뷰 20명 (20대 대학생), 포커스 그룹 인터뷰 2회, 설문 조사 200명"
+            data-insight="① 독서 기피의 가장 큰 이유는 '시간 부족'이 아닌 '시작의 어려움' ② SNS 요약 콘텐츠로 대체 소비 증가 ③ 커뮤니티 독서 경험자의 완독률 3배 높음"
+            data-feature="리서치 보고서 작성 / 페르소나 3종 도출 / 서비스 기획 방향 제언"
+            data-result="리서치 보고서 28p 완성, 교내 UX 리서치 공모전 최우수상 수상"
+            data-review="인터뷰 설계의 중요성을 깨달았습니다. 초기에 유도성 질문이 포함된 것을 발견하고 전면 재설계한 경험이 큰 배움이었습니다.">
+            <div class="project-card__thumb project-card__thumb--3">
+              <span class="project-card__category">리서치</span>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">대학생 독서 습관 리서치</h3>
+              <p class="project-card__desc">대학생 독서 기피 원인 파악을 위한 사용자 리서치 프로젝트</p>
+              <div class="project-card__tags">
+                <span class="tag tag--sm">#사용자리서치</span>
+                <span class="tag tag--sm">#설문</span>
+                <span class="tag tag--sm">#인터뷰</span>
+              </div>
+              <div class="project-card__footer">
+                <span class="project-card__period">2023.09 ~ 2023.11</span>
+                <button class="project-card__more">자세히 보기 <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
+
+          <article class="project-card reveal" data-category="app"
+            data-title="배달 앱 리오더 기능 개선 기획"
+            data-period="2024.10 ~ 2024.11"
+            data-tags="#개인프로젝트 #앱기획 #퀵커머스"
+            data-problem="배달 앱의 '재주문' 기능 사용률이 낮은 이유를 분석하고 개선 방향을 제안했습니다."
+            data-research="배달 앱 사용 행태 관찰 조사 10명, 리오더 관련 앱스토어 리뷰 200개 분석"
+            data-insight="① 재주문 진입 경로가 직관적이지 않음 ② 가격·메뉴 변동 미고지로 인한 불만 ③ 단골 가게 개념이 분산되어 있어 탐색 불편"
+            data-feature="원터치 재주문 / 메뉴 변동 알림 / 나만의 단골 가게 탭"
+            data-result="개인 기획서 완성, Figma 화면 설계 18화면"
+            data-review="개인 프로젝트로 A부터 Z까지 혼자 진행하면서 기획의 전체 흐름을 경험할 수 있었습니다.">
+            <div class="project-card__thumb project-card__thumb--4">
+              <span class="project-card__category">앱 기획</span>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">배달 앱 재주문 기능 개선</h3>
+              <p class="project-card__desc">배달 앱 재주문 UX 문제 분석 및 기능 개선 기획 (개인)</p>
+              <div class="project-card__tags">
+                <span class="tag tag--sm">#개인프로젝트</span>
+                <span class="tag tag--sm">#앱기획</span>
+                <span class="tag tag--sm">#퀵커머스</span>
+              </div>
+              <div class="project-card__footer">
+                <span class="project-card__period">2024.10 ~ 2024.11</span>
+                <button class="project-card__more">자세히 보기 <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </div>
+          </article>
+
+        </div>
       </div>
     </section>
 
-    <section id="projects" class="section">
+    <!-- ===== SECTION 05 : EXPERIENCE ===== -->
+    <section class="experience section section--alt" id="experience">
       <div class="container">
-        <header class="section__head">
-          <p class="section__eyebrow">03 — Projects</p>
-          <h2 class="section__title">프로젝트</h2>
-        </header>
-        <div id="projects-content" class="section__body"></div>
+        <h2 class="section__title reveal">Experience</h2>
+        <p class="section__subtitle reveal">경험 & 활동</p>
+        <div class="timeline">
+
+          <div class="timeline__item reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__card">
+              <span class="timeline__badge timeline__badge--intern">인턴십</span>
+              <h3 class="timeline__title">○○ 스타트업 서비스 기획 인턴</h3>
+              <span class="timeline__period">2024.07 ~ 2024.08 · 2개월</span>
+              <p class="timeline__desc">
+                커머스 플랫폼 신규 기능 기획 참여, 사용자 피드백 수집 및 정리,
+                화면 설계서 작성 보조, 스프린트 회의 참석 및 회의록 작성
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline__item reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__card">
+              <span class="timeline__badge timeline__badge--activity">대외활동</span>
+              <h3 class="timeline__title">IT 서비스 기획 동아리 'PLAN' 활동</h3>
+              <span class="timeline__period">2023.03 ~ 2024.12 · 2년</span>
+              <p class="timeline__desc">
+                기획 스터디, 서비스 분석 발표, 팀 프로젝트 3회 참여.
+                2024년 하반기 팀장으로서 5인 팀 프로젝트 리드 및 우수팀 선정
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline__item reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__card">
+              <span class="timeline__badge timeline__badge--award">수상</span>
+              <h3 class="timeline__title">교내 UX 리서치 공모전 최우수상</h3>
+              <span class="timeline__period">2023.11</span>
+              <p class="timeline__desc">
+                '대학생 독서 습관' 주제 사용자 리서치 프로젝트로 최우수상 수상.
+                심사위원으로부터 "리서치 설계와 인사이트 도출이 우수하다"는 평가 획득
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline__item reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__card">
+              <span class="timeline__badge timeline__badge--edu">교육</span>
+              <h3 class="timeline__title">UX/서비스 기획 부트캠프 수료</h3>
+              <span class="timeline__period">2023.07 ~ 2023.08 · 6주</span>
+              <p class="timeline__desc">
+                사용자 리서치, 정보구조 설계, 와이어프레임, Figma 프로토타입 과정 수료.
+                최종 프로젝트 팀 발표에서 수강생 투표 1위 선정
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline__item reveal">
+            <div class="timeline__dot"></div>
+            <div class="timeline__card">
+              <span class="timeline__badge timeline__badge--edu">학력</span>
+              <h3 class="timeline__title">○○대학교 경영학과</h3>
+              <span class="timeline__period">2020.03 ~ 2025.02 (졸업 예정)</span>
+              <p class="timeline__desc">
+                마케팅, 소비자행동론, 경영정보시스템 전공 이수.
+                학점 3.8/4.5
+              </p>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
-    <section id="experience" class="section">
+    <!-- ===== SECTION 06 : CONTACT ===== -->
+    <section class="contact section" id="contact">
       <div class="container">
-        <header class="section__head">
-          <p class="section__eyebrow">04 — Experience</p>
-          <h2 class="section__title">경력 · 교육 · 자격</h2>
-        </header>
-        <div id="experience-content" class="section__body"></div>
+        <h2 class="section__title reveal">Contact</h2>
+        <p class="section__subtitle reveal">함께 일해요 🙌</p>
+        <p class="contact__desc reveal">
+          새로운 기회와 협업에 항상 열려 있습니다.<br />
+          아래 채널로 편하게 연락 주세요!
+        </p>
+        <div class="contact__links reveal">
+          <button class="contact__item" id="copyEmailBtn" data-email="hong@email.com">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+              <span class="contact__label">이메일</span>
+              <span class="contact__value">hong@email.com</span>
+            </div>
+            <span class="contact__copy-hint">클릭하여 복사</span>
+          </button>
+          <a class="contact__item" href="https://linkedin.com/in/username" target="_blank" rel="noopener">
+            <i class="fa-brands fa-linkedin"></i>
+            <div>
+              <span class="contact__label">LinkedIn</span>
+              <span class="contact__value">linkedin.com/in/username</span>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square contact__ext"></i>
+          </a>
+          <a class="contact__item" href="https://notion.so/username" target="_blank" rel="noopener">
+            <i class="fa-solid fa-book-open"></i>
+            <div>
+              <span class="contact__label">Notion 포트폴리오</span>
+              <span class="contact__value">notion.so/username</span>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square contact__ext"></i>
+          </a>
+          <a class="contact__item" href="https://github.com/username" target="_blank" rel="noopener">
+            <i class="fa-brands fa-github"></i>
+            <div>
+              <span class="contact__label">GitHub</span>
+              <span class="contact__value">github.com/username</span>
+            </div>
+            <i class="fa-solid fa-arrow-up-right-from-square contact__ext"></i>
+          </a>
+        </div>
       </div>
     </section>
 
-    <section id="contact" class="section section--contact">
-      <div class="container">
-        <header class="section__head">
-          <p class="section__eyebrow">05 — Contact</p>
-          <h2 class="section__title">함께 일하고 싶으시다면</h2>
-        </header>
-        <div id="contact-content" class="section__body"></div>
-      </div>
-    </section>
   </main>
 
-  <footer class="site-footer">
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
     <div class="container">
-      <small>© <span id="footer-year"></span> <span data-bind="name">홍길동</span>. Built with vanilla JavaScript.</small>
+      <p>© 2025 홍길동. Designed & Built with ❤️</p>
+      <a href="#hero" class="footer__top-btn" aria-label="맨 위로 이동">
+        <i class="fa-solid fa-chevron-up"></i>
+      </a>
     </div>
   </footer>
+
+  <!-- ===== PROJECT MODAL ===== -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal__close" id="modalClose" aria-label="모달 닫기">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div class="modal__content">
+        <span class="modal__badge" id="modalBadge"></span>
+        <h2 class="modal__title" id="modalTitle"></h2>
+        <p class="modal__period" id="modalPeriod"></p>
+        <div class="modal__tags" id="modalTags"></div>
+        <div class="modal__body">
+          <div class="modal__section">
+            <h4><i class="fa-solid fa-magnifying-glass"></i> 문제 정의</h4>
+            <p id="modalProblem"></p>
+          </div>
+          <div class="modal__section">
+            <h4><i class="fa-solid fa-chart-bar"></i> 리서치 방법</h4>
+            <p id="modalResearch"></p>
+          </div>
+          <div class="modal__section">
+            <h4><i class="fa-solid fa-lightbulb"></i> 핵심 인사이트</h4>
+            <p id="modalInsight"></p>
+          </div>
+          <div class="modal__section">
+            <h4><i class="fa-solid fa-list-check"></i> 주요 기능</h4>
+            <p id="modalFeature"></p>
+          </div>
+          <div class="modal__section">
+            <h4><i class="fa-solid fa-flag-checkered"></i> 결과물</h4>
+            <p id="modalResult"></p>
+          </div>
+          <div class="modal__section modal__section--review">
+            <h4><i class="fa-solid fa-rotate-left"></i> 회고</h4>
+            <p id="modalReview"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast" id="toast">
+    <i class="fa-solid fa-check"></i> 이메일이 클립보드에 복사되었습니다!
+  </div>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
